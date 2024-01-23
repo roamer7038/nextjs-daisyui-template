@@ -3,7 +3,6 @@ import type { Config } from 'tailwindcss'
 const config: Config = {
   content: [
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   darkMode: ['class', '[data-mode="dark"]'],
@@ -20,6 +19,7 @@ const config: Config = {
     require('daisyui'),
   ],
   daisyui: {
+    // https://daisyui.com/docs/themes/
     themes: ['light', 'dark', 'corporate', 'halloween', 'wireframe', 'business'],
     darkTheme: 'business', // name of one of the included themes for dark mode
     base: true, // applies background color and foreground color for root element by default

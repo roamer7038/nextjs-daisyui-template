@@ -3,6 +3,7 @@ import '../app/globals.css';
 
 export const globalTypes = {
   // DaisyUI Themes
+  // https://daisyui.com/docs/themes/
   dataThemes: {
     defaultValue: {
       list: [
