@@ -1,6 +1,6 @@
 # Next.js Web Application Template
 
-Technologies used:
+以下のフレームワーク/ライブラリによって構成されている．
 
 - Next.js (App Router)
 - TypeScript
@@ -12,26 +12,34 @@ Technologies used:
 
 ## Getting Started
 
-Install dependencies:
+依存関係をインストールする．
 
 ```bash
 npm install
 ```
 
-Start the development server:
+開発サーバーを起動する．
 
 ```bash
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+[http://localhost:3000](http://localhost:3000) をブラウザで開くと，アプリケーションが表示される．
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+`app/page.tsx` を編集することで，ページを編集することができる．
 
-Start Storybook:
+## Storybook
+
+Storybook を起動します．
 
 ```bash
 npm run storybook
 ```
 
-Open [http://localhost:6006](http://localhost:6006) with your browser to see the result.
+[http://localhost:6006](http://localhost:6006) をブラウザで開くと，Storybook が表示される．
+
+## 既知の問題
+
+- react-daisyuiがサーバコンポーネントに対応していない．
+  - react-daisyuiを使う場合は`use client`が必須である．
+  - サーバコンポーネントを使いたい場合は，Tailwind CSSやDaisyUIを直接利用する．
