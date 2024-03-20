@@ -15,6 +15,7 @@ const config: StorybookConfig = {
     "@storybook/addon-onboarding",
     "@storybook/addon-interactions",
     'storybook-addon-data-theme-switcher',
+    "@storybook/addon-mdx-gfm"
   ],
   "framework": {
     "name": "@storybook/nextjs",
