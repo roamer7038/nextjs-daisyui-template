@@ -29,13 +29,14 @@ npm install
 npm run dev
 ```
 
-[http://localhost:3000](http://localhost:3000) をブラウザで開くと，アプリケーションが表示される． `app/page.tsx` を編集
-することで，ページを編集することができる．
+[http://localhost:3000](http://localhost:3000) をブラウザで開くと，アプリケーションが表示される．
+`app/page.tsx` を編集することで，ページを編集することができる．
 
 #### デプロイ
 
-ソースコードをビルドする．`next.config.js`の設定`output: 'export'`に基づいて，静的ファイル（html, js）が`out`ディレクト
-リに出力される．デプロイする際は，デプロイ先に`out`ディレクトリ配下のファイルを展開する．
+ソースコードをビルドする．
+`next.config.js`の設定`output: 'export'`に基づいて，静的ファイル（html, js）が`out`ディレクトリに出力される．
+デプロイする際は，デプロイ先に`out`ディレクトリ配下のファイルを展開する．
 
 ```bash
 npm run build
@@ -64,14 +65,13 @@ npm run start:storybook # Storybookの静的ビルドを確認
 - react-daisyuiがサーバコンポーネントに対応していない．
   - react-daisyuiを使う場合は`use client`が必須である．
   - サーバコンポーネントを使いたい場合は，Tailwind CSSやDaisyUIを直接利用する．
-  - 本リポジトリは`next.config.js`の設定`output: 'export'`に基づいて静的ファイルを出力するため，サーバコンポーネントは利
-    用できない．ただし，開発サーバ利用時にエラーを吐くため，`use client`は必須である．
+  - 本リポジトリは`next.config.js`の設定`output: 'export'`に基づいて静的ファイルを出力するため，サーバコンポーネントは利用できない．
+    - ただし，開発サーバ利用時にエラーを吐くため，`use client`は必須である．
 - コード整形はPrettierによって行われる．
   - 必要に応じて`.prettierrc.json`を編集する．
 - Nodeモジュールの無効化
   - `fs`や`dgram`などのNodeモジュールはブラウザで利用できない．
-  - これらのモジュールを含むパッケージをインストールする場合は，`package.json`の`browser`フィールドに無効化するモジュー
-    ルを指定する．
+  - これらのモジュールを含むパッケージをインストールする場合は，`package.json`の`browser`フィールドに無効化するモジュールを指定する．
   - 例: `"browser": { "fs": false, "dgram": false }`
   - storybookの場合は`main.ts`に以下のような設定を追加する．
     ```typescript
