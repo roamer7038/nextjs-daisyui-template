@@ -1,28 +1,28 @@
 import type { StorybookConfig } from '@storybook/nextjs';
 
 const config: StorybookConfig = {
-  "stories": [
-    "../stories/**/*.mdx",
-    "../stories/**/*.stories.@(js|jsx|mjs|ts|tsx)",
-    "../app/**/*.mdx",
-    "../app/**/*.stories.@(js|jsx|mjs|ts|tsx)",
-    "../components/**/*.mdx",
-    "../components/**/*.stories.@(js|jsx|mjs|ts|tsx)",
+  stories: [
+    '../stories/**/*.mdx',
+    '../stories/**/*.stories.@(js|jsx|mjs|ts|tsx)',
+    '../app/**/*.mdx',
+    '../app/**/*.stories.@(js|jsx|mjs|ts|tsx)',
+    '../components/**/*.mdx',
+    '../components/**/*.stories.@(js|jsx|mjs|ts|tsx)'
   ],
-  "addons": [
-    "@storybook/addon-links",
-    "@storybook/addon-essentials",
-    "@storybook/addon-onboarding",
-    "@storybook/addon-interactions",
+  addons: [
+    '@storybook/addon-links',
+    '@storybook/addon-essentials',
+    '@storybook/addon-onboarding',
+    '@storybook/addon-interactions',
     'storybook-addon-data-theme-switcher',
-    "@storybook/addon-mdx-gfm"
+    '@storybook/addon-mdx-gfm'
   ],
-  "framework": {
-    "name": "@storybook/nextjs",
-    "options": {}
+  framework: {
+    name: '@storybook/nextjs',
+    options: {}
   },
-  "docs": {
-    "autodocs": "tag"
+  docs: {
+    autodocs: 'tag'
   }
 };
 export default config;

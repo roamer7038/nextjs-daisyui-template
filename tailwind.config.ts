@@ -1,20 +1,19 @@
-import type { Config } from 'tailwindcss'
+import type { Config } from 'tailwindcss';
 
 const config: Config = {
   content: [
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
+    './stories/**/*.{js,ts,jsx,tsx,mdx}',
     'node_modules/daisyui/dist/**/*.js',
-    'node_modules/react-daisyui/dist/**/*.js',
+    'node_modules/react-daisyui/dist/**/*.js'
   ],
   darkMode: ['class', '[data-mode="dark"]'],
   theme: {
-    extend: {},
+    extend: {}
   },
-  plugins: [
-    require('daisyui'),
-  ],
+  plugins: [require('daisyui')],
   daisyui: {
     // https://daisyui.com/docs/themes/
     themes: ['light', 'dark', 'corporate', 'halloween', 'wireframe', 'business'],
@@ -26,5 +25,5 @@ const config: Config = {
     logs: true, // Shows info about daisyUI version and used config in the console when building your CSS
     themeRoot: ':root' // The element that receives theme color CSS variables
   }
-}
-export default config
+};
+export default config;
