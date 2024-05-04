@@ -1,90 +1,99 @@
+
 # Next.js Web Application Template
 
-以下のフレームワーク/ライブラリによって構成されている．
+このテンプレートは，以下のフレームワークおよびライブラリを使用して構築されています:
 
-- Next.js (App Router)
-- TypeScript
-- Tailwind CSS
-- DaisyUI (Tailwind CSS Components)
-  - [react-daisyUI](https://react.daisyui.com/?path=/docs/welcome--docs)
-- Storybook
-- ESLint
-- Prettier
+- **Next.js**: アプリケーションのルーティングとサーバサイドレンダリングを管理
+- **TypeScript**: 型付けによるJavaScriptの拡張
+- **Tailwind CSS**: 効率的なスタイル指定
+- **DaisyUI**: Tailwind CSSに基づいたUIキット
+- **Storybook**: UIコンポーネントのドキュメント化とテスト
+- **ESLint**: JavaScriptとTypeScriptのコード品質とスタイルのチェック
+- **Prettier**: コードフォーマットツール
 
-## Getting Started
+## セットアップ
 
-#### 依存関係のインストール
-
-依存関係をインストールする．可能な限り最新LTSのNode.jsを利用することを推奨する．
+以下の手順で依存関係をインストールし，開発サーバを起動してください．
 
 ```bash
 npm install
-```
-
-#### 開発サーバの起動
-
-開発サーバを起動する．Next.jsの開発サーバが起動し，ファイルの変更を検知して自動的にリロードする．
-
-```bash
 npm run dev
 ```
 
-[http://localhost:3000](http://localhost:3000) をブラウザで開くと，アプリケーションが表示される．
-`app/page.tsx` を編集することで，ページを編集することができる．
+アプリケーションは[http://localhost:3000](http://localhost:3000)でブラウザからアクセス可能です．
 
-#### デプロイ
+## ビルド方法
 
-ソースコードをビルドする．
-`next.config.js`の設定`output: 'export'`に基づいて，静的ファイル（html, js）が`out`ディレクトリに出力される．
-デプロイする際は，デプロイ先に`out`ディレクトリ配下のファイルを展開する．
+以下のコマンドでアプリケーションをビルドし，本番環境用サーバを起動します．
 
 ```bash
 npm run build
+npm start
 ```
 
-出力された静的ファイルを確認する．
+ビルド後，アプリケーションは[http://localhost:3000](http://localhost:3000)で確認できます．
+
+## Dockerの使用
+
+Dockerを使用してアプリケーションをコンテナ化する方法は以下の通りです．Dockerfileはアプリケーションの要件に応じて適宜編集してください．NEXT_PUBLICで始まる環境変数はビルド時に読み込まれるため，Dockerfileで明示的に設定する必要があります．
 
 ```bash
-npm run start
+docker build -t nextjs-daisyui-template .
+docker run -p 3000:3000 nextjs-daisyui-template
 ```
 
-HTTPサーバが起動し，[http://localhost:3000](http://localhost:3000) でアプリケーションが表示される．
+## Storybookの利用
 
-## Storybook
+以下のコマンドでStorybookを起動し，UIコンポーネントをブラウザで確認できます．
 
 ```bash
-npm run dev:storybook # Storybookの開発サーバを起動
-npm run build:storybook # Storybookの静的ビルド
-npm run start:storybook # Storybookの静的ビルドを確認
+npm run storybook
 ```
 
-[http://localhost:6006](http://localhost:6006) をブラウザで開くと，Storybook が表示される．
+Storybookは[http://localhost:6006](http://localhost:6006)でアクセス可能です．
+このテンプレートではGitHub Actionsを使用してStorybookのビルドとGitHub Pagesへのデプロイを行っています．
 
-## Tips
+## カスタマイズ
 
-- react-daisyuiがサーバコンポーネントに対応していない．
-  - react-daisyuiを使う場合は`use client`が必須である．
-  - サーバコンポーネントを使いたい場合は，Tailwind CSSやDaisyUIを直接利用する．
-  - 本リポジトリは`next.config.js`の設定`output: 'export'`に基づいて静的ファイルを出力するため，サーバコンポーネントは利用できない．
-    - ただし，開発サーバ利用時にエラーを吐くため，`use client`は必須である．
-- コード整形はPrettierによって行われる．
-  - 必要に応じて`.prettierrc.json`を編集する．
-- Nodeモジュールの無効化
-  - `fs`や`dgram`などのNodeモジュールはブラウザで利用できない．
-  - これらのモジュールを含むパッケージをインストールする場合は，`package.json`の`browser`フィールドに無効化するモジュールを指定する．
-  - 例: `"browser": { "fs": false, "dgram": false }`
-  - storybookの場合は`main.ts`に以下のような設定を追加する．
-    ```typescript
-    webpackFinal: (config) => {
-      return {
-        ...config,
-        resolve: {
-            ...config.resolve,
-            fallback: {
-            fs: false,
-            dgram: false,
-            },
-          },
-        },
-    },
-    ```
+### ビルド設定
+
+このテンプレートでは`next.config.js`でビルド設定を行っています．必要に応じて設定を変更してください．
+
+```javascript
+const nextConfig = {
+  output: 'standalone',
+  transpilePackages: ['react-daisyui'],
+  reactStrictMode: true
+};
+```
+
+デフォルトでは`standalone`モードでビルドされます．これはDockerイメージでアプリケーションを実行する場合に利用します．
+
+静的ファイルとしてビルドする場合は`export`モードを使用してください．
+いくつかの制約があるため，詳しくは[Next.jsの公式ドキュメント](https://nextjs.org/docs/app/building-your-application/deploying/static-exports)を参照してください．
+
+```javascript
+const nextConfig = {
+  output: 'export',
+  transpilePackages: ['react-daisyui'],
+  reactStrictMode: true
+};
+```
+
+### フォーマット
+
+このテンプレートではPreitterとESLintを使用してコードのフォーマットと品質チェックを行っています．必要に応じて設定を変更してください．
+
+```json
+{
+  "singleQuote": true,
+  "proseWrap": "always",
+  "tabWidth": 2,
+  "printWidth": 120,
+  "useTabs": false,
+  "trailingComma": "none",
+  "bracketSpacing": true,
+  "semi": true,
+  "plugins": ["prettier-plugin-tailwindcss"]
+}
+```
